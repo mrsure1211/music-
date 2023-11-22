@@ -9,20 +9,23 @@ const title = document.getElementById("title");
 const cover = document.getElementById("cover");
 const body =document.querySelector ("body");
 // Songs Titles
-const songs = ["big7", "ruger", "Young John","Victony","rema","Victony2","Rema Love","SarkodieFtBlack","Black-Sherif","Burnaboy-ft-Victony1","Kizz-Daniel-MyG","Wizkid-Ft-Don-Toliver-Special"];
+const songs = ["big7", "ruger", "Young John","Victony","rema","Victony2","Rema Love","SarkodieFtBlack","Black-Sherif","Burnaboy-ft-Victony1","Kizz-Daniel-MyG"];
 // KeepTrack of song
 let songIndex = 0;
 // Initially load song details into DOM
 loadSong(songs[songIndex]);
 // Update song details
 function loadSong(song) {
-title.innerText = song;
-audio.src = `./assets/musics/${song}.mp3`;
-cover.src = `./assets/images/${song}.jpg`;
-body.style.backgroundImage = `url(./assets/bg/${song}.jpg)`
-body.style.backgroundSize = `cover`
+    title.innerText = song;
+    audio.src = `./assets/musics/${song}.mp3`;
 
+    audio.addEventListener('loadeddata', function () {
+        cover.src = `./assets/images/${song}.jpg`;
+        body.style.backgroundImage = `url(./assets/bg/${song}.jpg)`;
+        body.style.backgroundSize = 'cover';
+    });
 }
+
 // Play Song
 function playSong() {
 musicContainer.classList.add("play");
